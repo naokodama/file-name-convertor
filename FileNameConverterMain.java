@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class FileNameConverterMain {
     static final int CHANGE_NUMBER_STR = 0;
     static final int LAST_STR_SPLITED_BY_UNDERSCORE = 1;
+    static final int LAST_FOUR_CHAR = 2;
     
     public static void main(String[] args) {
         String dir = args[0];
@@ -51,10 +52,20 @@ public class FileNameConverterMain {
         case LAST_STR_SPLITED_BY_UNDERSCORE:
             tmpFileName = getLastStrSplitedByUnderscore(tmpFileName);
             break;
+        case LAST_FOUR_CHAR:
+            tmpFileName = getLastFourChar(tmpFileName);
+            break;
         default:
             break;
         }
         return tmpFileName;
+    }
+
+    private static String getLastFourChar(String fileName) {
+        if (fileName.length() > 4) {
+            return fileName.substring(fileName.length() - 4);
+        }
+        return fileName;
     }
 
     private static String getLastStrSplitedByUnderscore(String fileName) {
